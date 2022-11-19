@@ -8,6 +8,8 @@ options = { noremap = true }
 map('n', '<leader>tg', ':Telescope live_grep<CR>', options)
 map('n', '<F1>', ':NvimTreeToggle<cr>', options)
 map('i', '<F1>', '<esc>:NvimTreeToggle<cr>', options)
+map('n', '<F2>', ':NvimTreeFocus<cr>', options)
+map('i', '<F2>', '<esc>:NvimTreeFocus<cr>', options)
 map('n', '<leader>sp', ':set paste<cr>i', options)
 --" LSP config (the mappings used in the default file don't quite work right)
 --nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
