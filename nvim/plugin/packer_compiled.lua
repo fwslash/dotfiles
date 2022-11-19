@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/feline.nvim",
     url = "https://github.com/feline-nvim/feline.nvim"
   },
+  gruvbox = {
+    loaded = true,
+    path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/lualine.nvim",

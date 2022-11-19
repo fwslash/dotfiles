@@ -10,5 +10,5 @@ vim.cmd [[set nocompatible]]
 vim.cmd [[syntax on]]
 
 -- colors
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd [[colorscheme gruvbox]]
 vim.cmd [[set termguicolors]]

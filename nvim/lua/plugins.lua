@@ -41,7 +41,7 @@ return packer.startup(function(use)
   
   -- Colorscheme
   use { "catppuccin/nvim", as = "catppuccin" }
-  
+  use {'morhetz/gruvbox'}  
   -- Nvim tree
   use {
     'nvim-tree/nvim-tree.lua',
