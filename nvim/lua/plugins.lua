@@ -40,7 +40,6 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   
   -- Colorscheme
-  use { "catppuccin/nvim", as = "catppuccin" }
   use {'morhetz/gruvbox'}  
   -- Nvim tree
   use {
@@ -59,6 +58,7 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-compe'
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP

@@ -1,3 +1,4 @@
+
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -10,6 +11,11 @@ require("nvim-tree").setup({
   },
   renderer = {
     group_empty = true,
+    icons = {
+        show = {
+            folder = false
+        }
+    }
   },
   filters = {
     dotfiles = true,

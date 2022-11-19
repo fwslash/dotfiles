@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  catppuccin = {
-    loaded = true,
-    path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -123,6 +118,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/Users/kbartolic/.local/share/nvim/site/pack/packer/start/nvim-compe",
+    url = "https://github.com/hrsh7th/nvim-compe"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
