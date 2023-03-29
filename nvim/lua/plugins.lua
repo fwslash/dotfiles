@@ -80,7 +80,8 @@ return packer.startup(function(use)
     use 'ravenxrz/DAPInstall.nvim'
     use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
     use 'leoluz/nvim-dap-go'
-
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'nvim-treesitter/nvim-treesitter'
 
     if PACKER_BOOTSTRAP then require('packer').sync() end
 end)
