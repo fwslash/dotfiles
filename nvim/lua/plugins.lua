@@ -41,11 +41,12 @@ return packer.startup(function(use)
 
     -- Colorscheme
     use {'morhetz/gruvbox'}
-    -- Nvim tree
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {'nvim-tree/nvim-web-devicons'} -- for file icons
-    }
+    -- NERD tree
+    use {'preservim/nerdtree'}
+    use {'Xuyuanp/nerdtree-git-plugin'}
+
+    -- Show git changes in statusline
+    use {'airblade/vim-gitgutter'}
 
     -- Autosave
     use '907th/vim-auto-save'

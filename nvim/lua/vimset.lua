@@ -9,3 +9,8 @@ set.expandtab = true
 -- Current line number
 set.cursorline = true
 set.number = true
+
+-- Cursor never at the bottom
+set.scrolloff = 8
+set.signcolumn = "yes"
+set.isfname:append("@-@")
