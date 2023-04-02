@@ -13,6 +13,9 @@ local plugins = {
     --Nerd tree git changes
     'Xuyuanp/nerdtree-git-plugin',
     lazy = false
+  },
+  {
+    'hashivim/vim-terraform'
   }
 }
 

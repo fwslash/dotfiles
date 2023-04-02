@@ -1,5 +1,4 @@
-/*
-!nvim/*
-!zshrc
-!oh-my-zsh/*
-!.gitignore
+/**
+
+!./nvim
+!./oh-my-zsh/**

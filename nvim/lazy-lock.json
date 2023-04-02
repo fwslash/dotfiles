@@ -26,5 +26,6 @@
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
   "telescope.nvim": { "branch": "master", "commit": "942fe5faef47b21241e970551eba407bc10d9547" },
   "ui": { "branch": "v2.0", "commit": "3e4706c1c4d0fe16de78742e39f4b5a1221bca93" },
+  "vim-terraform": { "branch": "master", "commit": "d00503de9bed3a1da7206090cb148c6a1acce870" },
   "which-key.nvim": { "branch": "main", "commit": "4b73390eec680b4c061ea175eb32c0ff3412271d" }
 }
