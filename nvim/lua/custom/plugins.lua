@@ -15,7 +15,8 @@ local plugins = {
     lazy = false
   },
   {
-    'hashivim/vim-terraform'
+    'hashivim/vim-terraform',
+    lazy = false
   }
 }
 
