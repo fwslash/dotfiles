@@ -8,7 +8,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="crunch" # set by `omz`
+#ZSH_THEME="htb" # set by `omz`
+ZSH_THEME="crunch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,3 +101,24 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
+eval $(/opt/homebrew/bin/brew shellenv)
+source ~/.sdkman/bin/sdkman-init.sh
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+
+alias j20="export JAVA_HOME=$(/usr/libexec/java_home -v 20); java -version"
+alias j19="export JAVA_HOME=$(/usr/libexec/java_home -v 19); java -version"
+alias j18="export JAVA_HOME=$(/usr/libexec/java_home -v 18); java -version"
+alias j17="export JAVA_HOME=$(/usr/libexec/java_home -v 17); java -version"
+alias j16="export JAVA_HOME=$(/usr/libexec/java_home -v 16); java -version"
+alias j15="export JAVA_HOME=$(/usr/libexec/java_home -v 15); java -version"
+alias j14="export JAVA_HOME=$(/usr/libexec/java_home -v 14); java -version"
+alias j13="export JAVA_HOME=$(/usr/libexec/java_home -v 13); java -version"
+alias j12="export JAVA_HOME=$(/usr/libexec/java_home -v 12); java -version"
+alias j11="export JAVA_HOME=$(/usr/libexec/java_home -v 11); java -version"
+alias j10="export JAVA_HOME=$(/usr/libexec/java_home -v 10); java -version"
+alias j9="export JAVA_HOME=$(/usr/libexec/java_home -v 9); java -version"
+alias j8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); java -version"
+alias j7="export JAVA_HOME=$(/usr/libexec/java_home -v 1.7); java -version"
+
