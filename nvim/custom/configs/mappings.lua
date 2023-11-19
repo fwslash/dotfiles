@@ -2,9 +2,9 @@ local M = {}
 
 M.tt = {
     n = {
-        ["<leader>tff"] = {":LspInfo <CR>", "Telescope"},
         ["<leader><leader>"] = {":lua require('dap).step_over()<CR>"},
-        ["<leader>db"] = {":lua require('dap').continue()<cr>"}
+        ["<leader>db"] = {":lua require('dap').continue()<cr>"},
+        ["<leader><F1>"] = {":NvimTreeToggle<cr>"}
     }
 }
 
