@@ -4,7 +4,11 @@ M.tt = {
     n = {
         ["<leader><leader>"] = {":lua require('dap).step_over()<CR>"},
         ["<leader>db"] = {":lua require('dap').continue()<cr>"},
-        ["<leader><F1>"] = {":NvimTreeToggle<cr>"}
+        ["<leader><F1>"] = {":NvimTreeToggle<cr>"},
+        ["<C-h>"] = {":TmuxNavigateLeft<cr>", "window left"},
+        ["<C-l>"] = {":TmuxNavigateRight<cr>", "window right"},
+        ["<C-j>"] = {":TmuxNavigateDown<cr>", "window down"},
+        ["<C-k>"] = {":TmuxNavigateUp<cr>", "window up"},
     }
 }
 

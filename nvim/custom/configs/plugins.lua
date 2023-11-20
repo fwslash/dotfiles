@@ -15,7 +15,11 @@ local plugins = {
         enabled = true
       }
     end
-  }
+  },
+    {
+        'christoomey/vim-tmux-navigator',
+        lazy = false
+    }
 }
 
 return plugins
