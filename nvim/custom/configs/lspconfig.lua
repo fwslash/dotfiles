@@ -5,7 +5,7 @@ local capabilities = configs.capabilities
 local lspconfig = require("lspconfig")
 local home_directory = vim.fn.expand("~")
 
-local servers = {"kotlin_language_server"}
+local servers = {"kotlin_language_server", "rust_analyzer"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
