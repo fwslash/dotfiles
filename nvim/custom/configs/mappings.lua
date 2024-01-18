@@ -8,7 +8,12 @@ M.tt = {
         ["<C-h>"] = {":TmuxNavigateLeft<cr>", "window left"},
         ["<C-l>"] = {":TmuxNavigateRight<cr>", "window right"},
         ["<C-j>"] = {":TmuxNavigateDown<cr>", "window down"},
-        ["<C-k>"] = {":TmuxNavigateUp<cr>", "window up"},
+        ["<leader>yy"] = {"\"*yy"},
+    },
+
+    v = {
+        ["<leader>y"] = {"\"*y"},
+        ["<leader>p"] = {"\"*p"},
     }
 }
 
