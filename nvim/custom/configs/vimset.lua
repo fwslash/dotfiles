@@ -12,3 +12,15 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.scrolloff = 10
+
+vim.opt.clipboard = ""
+
+-- Window local functions
+vim.wo.wrap = false
+
+
+vim.filetype.add({
+    extension = {
+        bats = "sh"
+    }
+})
