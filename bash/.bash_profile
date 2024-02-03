@@ -49,10 +49,7 @@ if [[ -z "$TMUX" ]]; then
     fi
 fi
 
-
-
-# Adcubum aliases
-
-alias bl="cd ~/Development/syrius-dataintegration-dataextraction-bl"
-alias blapi="cd ~/Development/syrius-dataintegration-dataextraction-bl-api"
-alias mgt="cd ~/Development/syrius-dataintegration-dataextraction-mgt"
+alias ls='ls -F -G'
+alias la='ls -A'
+alias l='ls -C'
+alias ll='ls -lah'
