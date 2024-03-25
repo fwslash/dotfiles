@@ -6,6 +6,7 @@ M.tt = {
         ["<leader>db"] = {":lua require('dap').continue()<cr>"},
         ["<leader><F1>"] = {":NvimTreeToggle<cr>"},
         ["<C-h>"] = {":TmuxNavigateLeft<cr>", "window left"},
+        ["<C-k>"] = {":TmuxNavigateUp<cr>", "window up"},
         ["<C-l>"] = {":TmuxNavigateRight<cr>", "window right"},
         ["<C-j>"] = {":TmuxNavigateDown<cr>", "window down"},
         ["<leader>yy"] = {"\"*yy"},
