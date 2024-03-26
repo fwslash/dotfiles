@@ -8,7 +8,7 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases
 alias vim="nvim"
-if [ -x "$(command -v java)" ]; then
+if [[ -x "$(command -v java)" ]] && [[ -d /usr/libexec/java_home ]]; then
     alias j20="export JAVA_HOME=$(/usr/libexec/java_home -v 20); java -version"
     alias j19="export JAVA_HOME=$(/usr/libexec/java_home -v 19); java -version"
     alias j18="export JAVA_HOME=$(/usr/libexec/java_home -v 18); java -version"
@@ -31,4 +31,6 @@ export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 
 # BREW
-eval $(/opt/homebrew/bin/brew shellenv)
+if [[ -x "$(command -v brew)" ]]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+fi
