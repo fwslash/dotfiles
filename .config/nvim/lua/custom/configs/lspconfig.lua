@@ -4,7 +4,7 @@ local capabilities = configs.capabilities
 
 local lspconfig = require("lspconfig")
 
-local servers = {"kotlin_language_server", "rust_analyzer", "jdtls", "bashls"}
+local servers = {"kotlin_language_server", "rust_analyzer", "jdtls", "bashls", "pylsp" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -13,3 +13,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig["groovyls"].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {"/usr/bin/java", "-jar", "/Users/karlo.bartolic/.local/share/nvim/mason/packages/groovy-language-server/build/libs/groovy-language-server-all.jar"}
+}
