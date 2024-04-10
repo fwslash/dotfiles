@@ -3,7 +3,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH config
 ZSH_THEME="bira"
-plugins=(git vi-mode)
+plugins=(git zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # aliases
