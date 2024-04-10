@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH config
-ZSH_THEME="bira"
+ZSH_THEME="frisk"
 plugins=(git zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
