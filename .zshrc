@@ -2,8 +2,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # ZSH config
-ZSH_THEME="geoffgarside"
-plugins=(git)
+ZSH_THEME="bira"
+plugins=(git zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # aliases
@@ -34,3 +34,5 @@ export PATH=$PATH:$GOPATH/bin
 if [[ -x "$(command -v brew)" ]]; then
     eval $(/opt/homebrew/bin/brew shellenv)
 fi
+
+bindkey -M viins '\e.' insert-last-word
