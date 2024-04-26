@@ -2,9 +2,9 @@
 local M = {}
 
 M.ui = { 
-    theme = 'gruvbox',
+    theme = 'kanagawa',
     changed_themes = {
-        gruvbox = {
+        kanagawa = {
             base_16 = {
                 base00 = "#322f30"
             },
