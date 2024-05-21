@@ -44,7 +44,7 @@ Plugin.opts = {
     'bash',
     'go',
     'java',
-    'markdown_inline',
+    'markdown',
   },
 
 }

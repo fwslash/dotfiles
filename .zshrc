@@ -20,4 +20,5 @@ if [[ -x "$(command -v brew)" ]]; then
 fi
 
 bindkey -M viins '\e.' insert-last-word
-
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
