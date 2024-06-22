@@ -13,3 +13,5 @@ vim.keymap.set('n', '<esc>', ':noh <cr>')
 
 -- Start LSP
 vim.keymap.set('n', '<leader>ss', ':LspStart <cr>')
+
+vim.keymap.set('n', '<leader>wr', ':set wrap linebreak <cr>')
