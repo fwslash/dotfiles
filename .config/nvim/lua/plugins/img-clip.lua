@@ -11,7 +11,7 @@ function Plugin.config()
             dir_path = "~/Pictures/screenshots/"
         }
     })
-    
+
 end
 
 return Plugin
