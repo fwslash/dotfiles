@@ -1,105 +1,192 @@
-local Plugin = {'neovim/nvim-lspconfig'}
-local user = {}
+return { -- LSP Configuration & Plugins
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		-- Automatically install LSPs and related tools to stdpath for neovim
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
-Plugin.dependencies =  {
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'williamboman/mason-lspconfig.nvim'},
+		-- Useful status updates for LSP.
+		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+		{
+			"j-hui/fidget.nvim",
+			tag = "v1.4.0",
+			opts = {
+				progress = {
+					display = {
+						done_icon = "✓", -- Icon shown when all LSP progress tasks are complete
+					},
+				},
+				notification = {
+					window = {
+						winblend = 0, -- Background color opacity in the notification window
+					},
+				},
+			},
+		},
+	},
+	config = function()
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+			-- Create a function that lets us more easily define mappings specific LSP related items.
+			-- It sets the mode, buffer and description for us each time.
+			callback = function(event)
+				local map = function(keys, func, desc)
+					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+				end
+
+				-- Jump to the definition of the word under your cursor.
+				--  This is where a variable was first declared, or where a function is defined, etc.
+				--  To jump back, press <C-T>.
+				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+
+				-- Find references for the word under your cursor.
+				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+
+				-- Jump to the implementation of the word under your cursor.
+				--  Useful when your language has ways of declaring types without an actual implementation.
+				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+
+				-- Jump to the type of the word under your cursor.
+				--  Useful when you're not sure what type a variable is and you want to see
+				--  the definition of its *type*, not where it was *defined*.
+				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+
+				-- Fuzzy find all the symbols in your current document.
+				--  Symbols are things like variables, functions, types, etc.
+				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+
+				-- Fuzzy find all the symbols in your current workspace
+				--  Similar to document symbols, except searches over your whole project.
+				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+
+				-- Rename the variable under your cursor
+				--  Most Language Servers support renaming across files, etc.
+				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
+				-- Execute a code action, usually your cursor needs to be on top of an error
+				-- or a suggestion from your LSP for this to activate.
+				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+
+				-- Opens a popup that displays documentation about the word under your cursor
+				--  See `:help K` for why this keymap
+				map("K", vim.lsp.buf.hover, "Hover Documentation")
+
+				-- WARN: This is not Goto Definition, this is Goto Declaration.
+				--  For example, in C this would take you to the header
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+				map("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+				map("<leader>wre", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [RE]move Folder")
+				map("<leader>wl", function()
+					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+				end, "[W]orkspace [L]ist Folders")
+
+				-- The following two autocommands are used to highlight references of the
+				-- word under your cursor when your cursor rests there for a little while.
+				--    See `:help CursorHold` for information about when this is executed
+				--
+				-- When you move your cursor, the highlights will be cleared (the second autocommand).
+				local client = vim.lsp.get_client_by_id(event.data.client_id)
+				if client and client.server_capabilities.documentHighlightProvider then
+					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+						buffer = event.buf,
+						callback = vim.lsp.buf.document_highlight,
+					})
+
+					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+						buffer = event.buf,
+						callback = vim.lsp.buf.clear_references,
+					})
+				end
+			end,
+		})
+
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+		-- Enable the following language servers
+		local servers = {
+			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+			lua_ls = {
+				-- cmd = {...},
+				-- filetypes { ...},
+				-- capabilities = {},
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						workspace = {
+							checkThirdParty = false,
+							-- Tells lua_ls where to find all the Lua files that you have loaded
+							-- for your neovim configuration.
+							library = {
+								"${3rd}/luv/library",
+								unpack(vim.api.nvim_get_runtime_file("", true)),
+							},
+							-- If lua_ls is really slow on your computer, you can try this instead:
+							-- library = { vim.env.VIMRUNTIME },
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+						telemetry = { enable = false },
+						diagnostics = { disable = { "missing-fields" } },
+					},
+				},
+			},
+			dockerls = {},
+			docker_compose_language_service = {},
+			pylsp = {
+				settings = {
+					pylsp = {
+						plugins = {
+							pyflakes = { enabled = false },
+							pycodestyle = { enabled = false },
+							autopep8 = { enabled = false },
+							yapf = { enabled = false },
+							mccabe = { enabled = false },
+							pylsp_mypy = { enabled = false },
+							pylsp_black = { enabled = false },
+							pylsp_isort = { enabled = false },
+						},
+					},
+				},
+			},
+			helm_ls = {
+				filetypes = { "yaml" },
+			},
+			groovyls = {},
+			jsonls = {},
+			sqlls = {},
+			terraformls = {},
+			yamlls = {},
+			bashls = {},
+			texlab = {},
+			gopls = {},
+		}
+
+		-- Ensure the servers and tools above are installed
+		require("mason").setup()
+
+		-- You can add other tools here that you want Mason to install
+		-- for you, so that they are available from within Neovim.
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, {
+			"stylua", -- Used to format lua code
+		})
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
+					-- This handles overriding only values explicitly passed
+					-- by the server configuration above. Useful when disabling
+					-- certain features of an LSP (for example, turning off formatting for tsserver)
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
+		})
+	end,
 }
-
-Plugin.cmd = {'LspInfo', 'LspInstall', 'LspUnInstall'}
-Plugin.event = {'BufReadPre', 'BufNewFile'}
-
-local on_attach = function(_, bufnr)
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { buffer = 0, noremap = true, silent = true }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-  vim.keymap.set('n', '<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, opts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', '<leader>of', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
-end
-
-
-function Plugin.init()
-  local sign = function(opts)
-    -- See :help sign_define()
-    vim.fn.sign_define(opts.name, {
-      texthl = opts.name,
-      text = opts.text,
-      numhl = ''
-    })
-  end
-
-  sign({name = 'DiagnosticSignError', text = '✘'})
-  sign({name = 'DiagnosticSignWarn', text = '▲'})
-  sign({name = 'DiagnosticSignHint', text = '⚑'})
-  sign({name = 'DiagnosticSignInfo', text = '»'})
-
-  -- See :help vim.diagnostic.config()
-  vim.diagnostic.config({
-    virtual_text = true,
-    severity_sort = true,
-    float = {
-      border = 'rounded',
-      source = 'always',
-    },
-  })
-
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    {border = 'rounded'}
-  )
-
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {border = 'rounded'}
-  )
-end
-
-function Plugin.config()
-  local lspconfig = require('lspconfig')
-  local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-  local servers = {"kotlin_language_server", "rust_analyzer", "jdtls", "bashls", "pylsp", "lua_ls" }
-
-    for _, lsp in ipairs(servers) do
-      lspconfig[lsp].setup {
-        autostart = false,
-        on_attach = on_attach,
-        capabilities = lsp_capabilities,
-      }
-    end
-
-    lspconfig["helm_ls"].setup {
-        on_attach = on_attach,
-        capabilities = lsp_capabilities,
-        filetypes = {"yaml"}
-    }
-
-    lspconfig["groovyls"].setup {
-        autostart = false,
-        on_attach = on_attach,
-        capabilities = lsp_capabilities,
-        cmd = {"/usr/bin/java", "-jar", "/Users/karlo.bartolic/.local/share/nvim/mason/packages/groovy-language-server/build/libs/groovy-language-server-all.jar"}
-    }
-
-end
-
-return Plugin

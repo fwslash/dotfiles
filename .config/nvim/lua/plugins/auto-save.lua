@@ -1,12 +1,9 @@
-local Plugin = {'Pocco81/auto-save.nvim'}
-
-Plugin.opts = { 
+return {
+	"Pocco81/auto-save.nvim",
 	lazy = false,
 	config = function()
-		require("auto-save").setup {
-			enabled = true
-		}
-	end
+		require("auto-save").setup({
+			enabled = true,
+		})
+	end,
 }
-
-return Plugin
