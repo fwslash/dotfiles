@@ -16,7 +16,6 @@ return {
 			ensure_installed = {
 				"stylua", -- lua formatter
 				"black", -- python formatter
-				"goimports", -- golang formatter
 				"shfmt", -- bash foramtter
 			},
 			-- auto-install configured formatters & linters (with null-ls)

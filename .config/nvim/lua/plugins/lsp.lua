@@ -159,10 +159,8 @@ return { -- LSP Configuration & Plugins
 			jsonls = {},
 			sqlls = {},
 			terraformls = {},
-			yamlls = {},
 			bashls = {},
 			texlab = {},
-			gopls = {},
 		}
 
 		-- Ensure the servers and tools above are installed
