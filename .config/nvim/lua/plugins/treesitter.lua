@@ -29,6 +29,8 @@ return {
             "python",
             "groovy",
             "kotlin",
+            "hcl",
+            "terraform",
             "bash",
             "go",
             "java",
