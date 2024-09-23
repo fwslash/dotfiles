@@ -24,7 +24,7 @@ return {
 
 		local sources = {
 			formatting.stylua,
-			formatting.shfmt.with({ args = { "-i", "4" } }),
+			formatting.shfmt.with({ args = { "-i", "2" } }),
 			formatting.terraform_fmt,
 		}
 

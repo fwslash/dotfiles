@@ -15,11 +15,11 @@ vim.opt.scrolloff = 10
 
 vim.opt.clipboard = ""
 
-vim.opt.guicursor = ""
+--vim.opt.guicursor = ""
 -- Window local functions
 vim.wo.wrap = false
 
-vim.opt.listchars = "space:.,tab:>>,trail:~"
+vim.opt.listchars = "space:·,tab:»·,trail:~"
 vim.opt.list = true
 
 vim.filetype.add({
