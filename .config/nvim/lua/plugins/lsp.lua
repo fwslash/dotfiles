@@ -36,7 +36,7 @@ return {
 				"lua_ls",
 				"bashls",
 				"dockerls",
-				"helm-ls",
+				"helm_ls",
 				"gopls",
 				"terraformls",
 			},

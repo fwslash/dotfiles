@@ -1,6 +1,15 @@
 -- Format on save and linters
+vim.api.nvim_create_user_command("NullLsStart", function()
+	local null_ls = require("null-ls")
+
+	null_ls.setup({
+		sources = NullSources,
+	})
+end, {})
+
 return {
 	"nvimtools/none-ls.nvim",
+	lazy = true,
 	dependencies = {
 		"nvimtools/none-ls-extras.nvim",
 		"jayp0521/mason-null-ls.nvim", -- ensure dependencies are installed
@@ -22,15 +31,10 @@ return {
 			automatic_installation = true,
 		})
 
-		local sources = {
+		NullSources = {
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "2" } }),
 			formatting.terraform_fmt,
 		}
-
-		null_ls.setup({
-			-- debug = true, -- Enable debug mode. Inspect logs with :NullLsLog.
-			sources = sources,
-		})
 	end,
 }
