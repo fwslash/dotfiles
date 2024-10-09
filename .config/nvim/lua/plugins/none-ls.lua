@@ -35,6 +35,7 @@ return {
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "2" } }),
 			formatting.terraform_fmt,
+			formatting.black.with({ args = { "-l", "120" } }),
 		}
 	end,
 }

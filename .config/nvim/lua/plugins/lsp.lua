@@ -37,6 +37,7 @@ return {
 				"bashls",
 				"dockerls",
 				"helm_ls",
+				"pylsp",
 				"gopls",
 				"terraformls",
 			},
@@ -46,7 +47,21 @@ return {
 						autostart = false,
 					})
 				end,
-
+				["pylsp"] = function()
+					require("lspconfig").pylsp.setup({
+						autostart = false,
+						settings = {
+							pylsp = {
+								plugins = {
+									pycodestyle = {
+										maxLineLength = 120,
+                    indentSize = 2
+									},
+								},
+							},
+						},
+					})
+				end,
 				["lua_ls"] = function()
 					require("lspconfig").lua_ls.setup({
 						autostart = false,
@@ -61,28 +76,28 @@ return {
 				end,
 			},
 		})
-		local cmp = require('cmp')
-		local cmp_action = require('lsp-zero').cmp_action()
-		local cmp_format = require('lsp-zero').cmp_format({details = true})
+		local cmp = require("cmp")
+		local cmp_action = require("lsp-zero").cmp_action()
+		local cmp_format = require("lsp-zero").cmp_format({ details = true })
 
-		require('luasnip.loaders.from_vscode').lazy_load()
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			sources = {
-				{name = 'nvim_lsp'},
-				{name = 'luasnip'},
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" },
 			},
 			mapping = cmp.mapping.preset.insert({
-				['<C-f>'] = cmp_action.luasnip_jump_forward(),
-				['<C-b>'] = cmp_action.luasnip_jump_backward(),
+				["<C-f>"] = cmp_action.luasnip_jump_forward(),
+				["<C-b>"] = cmp_action.luasnip_jump_backward(),
 			}),
 			snippet = {
 				expand = function(args)
-					require('luasnip').lsp_expand(args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			--- (Optional) Show source name in completion menu
 			formatting = cmp_format,
 		})
-  end
+	end,
 }
