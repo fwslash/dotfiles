@@ -4,7 +4,7 @@ return {
 	opts = {
 		window = { auto_expand_width = true },
 	},
-	lazy = false,
+	cmd = { "Neotree" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
@@ -14,10 +14,8 @@ return {
 		vim.g.loaded_netrwPlugin = 1
 	end,
 	config = function()
-		vim.keymap.set("n", "<leader>e", "<cmd>Neotree filesystem toggle<cr>")
-
 		require("neo-tree").setup({
-			window = { auto_expand_width = true },
+			window = { auto_expand_width = true  },
 			event_handlers = {
 				{
 					event = "neo_tree_buffer_enter",
