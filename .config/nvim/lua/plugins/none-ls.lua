@@ -26,6 +26,7 @@ return {
 				"stylua", -- lua formatter
 				"black", -- python formatter
 				"shfmt", -- bash foramtter
+				"prettierd",
 			},
 			-- auto-install configured formatters & linters (with null-ls)
 			automatic_installation = true,
