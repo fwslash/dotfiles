@@ -14,7 +14,7 @@ M.setup = function()
 			"tailwindcss",
 			"ts_ls",
 		},
-    auto_install = true,
+		auto_install = true,
 		handlers = {
 			function(server_name)
 				require("lspconfig")[server_name].setup({
@@ -28,6 +28,10 @@ M.setup = function()
 			["lua_ls"] = function()
 				require("plugins.lsp.servers.lua_ls").setup()
 			end,
+
+            ["helm-ls"] = function ()
+                require("plugins.lsp.servers.helm_ls").setup()
+            end
 		},
 	})
 end

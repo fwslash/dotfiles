@@ -23,8 +23,7 @@ vim.opt.listchars = "space:·,tab:»·,trail:~"
 vim.opt.list = true
 
 vim.filetype.add({
-    extension = {
-        bats = "sh"
-    }
+	extension = {
+		bats = "sh",
+	},
 })
-

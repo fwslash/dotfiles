@@ -15,7 +15,7 @@ return {
 	end,
 	config = function()
 		require("neo-tree").setup({
-			window = { auto_expand_width = true  },
+			window = { auto_expand_width = true },
 			event_handlers = {
 				{
 					event = "neo_tree_buffer_enter",
