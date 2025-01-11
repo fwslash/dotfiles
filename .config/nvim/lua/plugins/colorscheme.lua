@@ -1,15 +1,16 @@
 return {
-	"catppuccin/nvim",
+	"EdenEast/nightfox.nvim",
 	priority = 1000,
 	config = function()
-		require("catppuccin").setup({
-			color_overrides = {
-				all = {
-					flamingo = "#ffe1a8",
-					pink = "#e26d5c",
+		require("nightfox").setup({
+			options = {
+				styles = {
+					comments = "italic",
+					keywords = "bold",
+					types = "italic,bold",
 				},
 			},
 		})
-		vim.cmd.colorscheme("catppuccin-mocha")
+		vim.cmd.colorscheme("nordfox")
 	end,
 }

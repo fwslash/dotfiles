@@ -16,7 +16,7 @@ vim.keymap.set("n", "<leader>ss", ":LspStart<cr>:NullLsStart<cr>")
 vim.keymap.set("n", "<leader>wr", ":set wrap linebreak <cr>")
 
 vim.keymap.set("n", "<leader>sc", ":set listchars=space:·,tab:»·,trail:~ | set list <cr>")
-vim.keymap.set("n", "<leader>hc", ":set listchars= | set list <cr>")
+vim.keymap.set("n", "<leader>hc", ":set nolist <cr>")
 
 -- Neotree
 vim.keymap.set("n", "<leader>e", function()

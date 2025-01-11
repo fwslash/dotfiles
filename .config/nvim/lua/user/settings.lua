@@ -19,9 +19,6 @@ vim.opt.clipboard = ""
 -- Window local functions
 vim.wo.wrap = false
 
-vim.opt.listchars = "space:·,tab:»·,trail:~"
-vim.opt.list = true
-
 vim.filetype.add({
 	extension = {
 		bats = "sh",
