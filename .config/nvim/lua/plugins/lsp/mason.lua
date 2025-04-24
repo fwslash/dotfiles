@@ -29,9 +29,9 @@ M.setup = function()
 				require("plugins.lsp.servers.lua_ls").setup()
 			end,
 
-            ["helm-ls"] = function ()
-                require("plugins.lsp.servers.helm_ls").setup()
-            end
+			["helm-ls"] = function()
+				require("plugins.lsp.servers.helm_ls").setup()
+			end,
 		},
 	})
 end
