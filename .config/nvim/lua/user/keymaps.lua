@@ -17,12 +17,3 @@ vim.keymap.set("n", "<leader>wr", ":set wrap linebreak <cr>")
 
 vim.keymap.set("n", "<leader>sc", ":set listchars=space:·,tab:»·,trail:~ | set list <cr>")
 vim.keymap.set("n", "<leader>hc", ":set nolist <cr>")
-
--- Neotree
-vim.keymap.set("n", "<leader>e", function()
-	if not package.loaded["neo-tree"] then
-		vim.cmd("Neotree")
-	else
-		vim.cmd("Neotree filesystem toggle")
-	end
-end, { noremap = true, silent = true })
