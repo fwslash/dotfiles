@@ -7,7 +7,11 @@ plugins=(git zsh-vi-mode)
 
 # Configure zsh-vi-mode keybindings (must be before sourcing oh-my-zsh)
 function zvm_after_init() {
-  bindkey -M viins '\e.' insert-last-word
+  # Use copy-earlier-word instead for proper cycling behavior
+  autoload -Uz copy-earlier-word
+  zle -N copy-earlier-word
+  bindkey -M viins '\e.' copy-earlier-word
+  bindkey -M vicmd '\e.' copy-earlier-word
 }
 
 source $ZSH/oh-my-zsh.sh
