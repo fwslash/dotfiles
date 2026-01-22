@@ -10,7 +10,10 @@ vim.keymap.set("v", "<leader>p", '"*p')
 vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>")
 
 -- Remove search highlight
-vim.keymap.set("n", "<esc>", ":noh <cr>")
+vim.keymap.set("n", "<esc>", ":noh<cr>")
 
 -- Toggle diagnostics
 vim.keymap.set("n", "<leader>dt", "<cmd>DiagnosticToggle<cr>")
+
+--Open oil
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>")
